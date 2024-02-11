@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block content %}
+<form action="" method="post" class="chat"> 
+    <h3>Enter the chat room</h3>
+    <div>
+        <label for="">Name:</label>
+        <input type="text" placeholder="pick a name" name="name" value="name">
+    </div>
+    <div class="join">
+        <input type="text" placeholder="Room code" name="code" value="{{code}}" />
+        <button type="submit" name="join" class="join"> Join a room</button>
+    </div>
+    <button type="submit" name="create" class="create-btn">Create a room</button>
+</form>
+{% endblock %}
