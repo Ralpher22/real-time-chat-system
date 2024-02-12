@@ -9,6 +9,7 @@
    display: flex;
    align-items:  center;
    justify-content: center;
+}
 .join{
     display:flex;
     flex-direction: row;
@@ -16,4 +17,31 @@
 }
 .create-btn{
     width: 100%;
+}
+.message-box{
+    border-color: black;
+    border-width: 2px;
+    border-style: solid;
+    border-radius: 10px;
+    background-color: whitesmoke;
+    height: 88vh;
+    display: flex;
+    flex-direction: column;
+    width: 80vw;
+    align-items: stretch;
+}
+.messages{
+overflow: scroll;
+flex: 1;
+width: 100%;
+}
+.inputs{
+    padding: 10px;
+    display: flex;
+}
+h2{
+    text-align: center;
+}
+#message{
+    flex: 1;
 }
