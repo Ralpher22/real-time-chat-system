@@ -1,0 +1,17 @@
+*.call-buttons {
+  display: flex; /* Enable flexbox for button arrangement */
+  justify-content: flex-end; /* Align buttons to the right */
+  width:20%;
+  background-color: rgba(66, 65, 65, 0.925);
+}
+
+.call-buttons button {
+  background-color: transparent; /* Remove button background color */
+  border: none; /* Remove button border */
+  padding: 0 5px; /* Add some margin between buttons and icons */
+  cursor: pointer; /* Indicate clickable functionality */
+}*/
+background-color: rgba(66, 65, 65, 0.925);
+color: white;
+display: flex;
+height: fit-content;

@@ -1,6 +1,24 @@
 {% extends 'base.html' %} {% block content %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+
 <div class="message-box">
-  <h2>Chat Room: {{code}}</h2>
+  <div class="navbar">
+
+    <div class="haeder">
+      <h2 style="text-align:left; margin-left: 8px;">Chat Room: {{ code }}</h2> 
+    </div>
+      <div class="vcall">
+        <button type="button" class="video-call">
+          <i class="fas fa-video"></i> </button>
+      </div>
+     <div class="acall">
+      <button type="button" class="audio-call">
+        <i class="fas fa-phone"></i> </button>
+     </div>
+    
+        
+  </div>
+
   <div class="messages" id="messages"></div>
   <div class="inputs">
     <input
@@ -10,9 +28,15 @@
       name="message"
       id="message"
     />
-    <button type="button" name="send" id="send-btn" onClick="sendMessage()">
-      Send
-    </button>
+    <div class="input-icons">
+      <button type="button" class="send-btn" id="send-btn" onClick="sendMessage()">
+        <i class="fas fa-paper-plane"></i> 
+      </button>
+      <button type="button" id="file-select-btn">
+        <i class="fas fa-image"></i>
+        <input type="file" id="image-input" accept="image/*" style="display: none;">
+      </button>
+    </div>
   </div>
 </div>
 <script type="text/javascript">
@@ -22,14 +46,14 @@
 
   const createMessage = (name, msg) => {
     const content = `
-    <div class="text">
+      <div class="text">
         <span>
-            <strong>${name}</strong>: ${msg}
+          <strong>${name}</strong>: ${msg}
         </span>
         <span class="muted">
-            ${new Date().toLocaleString()}
+          ${new Date().toLocaleString()}
         </span>
-    </div>
+      </div>
     `;
     messages.innerHTML += content;
   };
@@ -43,10 +67,27 @@
     if (message.value == "") return;
     socketio.emit("message", { data: message.value });
     message.value = "";
+
+    const fileSelectBtn = document.getElementById('file-select-btn');
+const imageInput = document.getElementById('image-input');
+
+fileSelectBtn.addEventListener('click', () => {
+  imageInput.click();
+});
+
+imageInput.addEventListener('change', (event) => {
+  const file = event.target.files[0];
+  // Implement image upload functionality here
+  // This might involve sending the image file to the server
+  // using a library like Axios or Fetch API.
+  console.log("Selected image:", file);
+});
+
   };
 </script>
 {% for msg in messages %}
 <script type="text/javascript">
   createMessage("{{msg.name}}", "{{msg.message}}");
 </script>
-{% endfor %} {% endblock %}
+{% endfor %}
+{% endblock %}
